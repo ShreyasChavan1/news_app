@@ -54,7 +54,6 @@ class _BannerState extends State<Banner> {
               Image.asset('images/biglogo.png'),
               _Label('Get started for daily \n trending news! ', 20,
                   padding: EdgeInsets.only(top: 2)),
-              Button()
             ],
           ),
         ),
@@ -77,30 +76,30 @@ Widget _Label(String text, double fontSize, {required EdgeInsets padding}) {
   );
 }
 
-Widget Button() {
-  return Container(
-    width: 200,
-    height: 50,
-    decoration: BoxDecoration(
-      color: Colors.red,
-      borderRadius: BorderRadius.circular(34),
-    ),
-    child: Column(
-      children: [
-        Center(
-          child: Text(
-            'getstarted',
-            style: TextStyle(
-                color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-        ),
-        GestureDetector(onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (BuildContext context) {
-            return Login();
-          }));
-        })
-      ],
-    ),
-  );
-}
+// Widget Button() {
+//   return Container(
+//     width: 200,
+//     height: 50,
+//     decoration: BoxDecoration(
+//       color: Colors.red,
+//       borderRadius: BorderRadius.circular(34),
+//     ),
+//     child: Column(
+//       children: [
+//         Center(
+//           child: Text(
+//             'getstarted',
+//             style: TextStyle(
+//                 color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
+//           ),
+//         ),
+//        return GestureDetector(
+//       onTap: () {
+//         Navigator.of(context)
+//             .push(MaterialPageRoute(builder: (BuildContext context) {
+//           return Second();
+//         }));
+//       ],
+//     ),
+//   );
+// }
