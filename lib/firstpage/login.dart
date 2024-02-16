@@ -1,6 +1,10 @@
 import 'package:firstapp/nextpage/registration.dart';
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(Login());
+}
+
 class Login extends StatefulWidget {
   Login({super.key});
 
