@@ -2,7 +2,10 @@ import 'package:firstapp/nextpage/registration.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Login());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Login(),
+  ));
 }
 
 class Login extends StatefulWidget {
@@ -15,62 +18,59 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 60.0),
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF000000),
-                Color(0xFF450202),
-                Color(0xE6FF0909),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment:
-                MainAxisAlignment.start, // Align labels to the left
-            children: [
-              Image.asset(
-                'images/logo.png',
-                width: 200,
-                height: 200,
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _buildLabel('Username', 28),
-                ],
-              ),
-              _buildTextField('Enter your username'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _buildLabel('Password', 28),
-                ],
-              ),
-              _buildTextField('Enter your password', isPassword: true),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _buildForgotPassword(),
-                ],
-              ),
-              SizedBox(height: 40),
-              _buildSignInButton(),
-              SizedBox(height: 10),
-              _buildSignUpText(),
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 60.0),
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF000000),
+              Color(0xFF450202),
+              Color(0xE6FF0909),
             ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment:
+              MainAxisAlignment.start, // Align labels to the left
+          children: [
+            Image.asset(
+              'images/logo.png',
+              width: 200,
+              height: 200,
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _buildLabel('Username', 28),
+              ],
+            ),
+            _buildTextField('Enter your username'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _buildLabel('Password', 28),
+              ],
+            ),
+            _buildTextField('Enter your password', isPassword: true),
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _buildForgotPassword(),
+              ],
+            ),
+            SizedBox(height: 40),
+            _buildSignInButton(),
+            SizedBox(height: 10),
+            _buildSignUpText(),
+          ],
         ),
       ),
     );
