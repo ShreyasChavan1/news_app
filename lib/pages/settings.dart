@@ -3,6 +3,15 @@ import 'package:newsapp/firstpage/login.dart';
 import 'package:newsapp/homepage/hompage.dart';
 import 'package:newsapp/pages/Headlines.dart';
 import 'package:newsapp/pages/saved.dart';
+import 'package:newsapp/pages/setting%20pages/user_settings.dart';
+
+// Import individual setting pages
+import 'package:newsapp/pages/setting%20pages/Manage_pass.dart';
+import 'package:newsapp/pages/setting%20pages/New_account.dart';
+import 'package:newsapp/pages/setting%20pages/about.dart';
+import 'package:newsapp/pages/setting%20pages/change_pass.dart';
+import 'package:newsapp/pages/setting%20pages/privacy.dart';
+import 'package:newsapp/pages/setting%20pages/setting_temp.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -19,14 +28,15 @@ class _SettingsState extends State<Settings> {
       case 0:
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => Homepage()));
-      case 1: // Headlines
+        break;
+      case 1:
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => HeadlinesPage()),
         );
         break;
       case 2:
         break;
-      case 3: // Saved
+      case 3:
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => Saved()),
         );
@@ -34,6 +44,7 @@ class _SettingsState extends State<Settings> {
     }
   }
 
+  // Updated onTap methods to navigate to respective pages
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,11 +75,11 @@ class _SettingsState extends State<Settings> {
             ),
             SizedBox(height: 15),
             Text(
-              'Shreyas chavan',
+              'Omkar Jadhav',
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             Text(
-              'shreyas@gmail.com',
+              'Omkar@gmail.com',
               style: TextStyle(color: Colors.white, fontSize: 12),
             ),
             SizedBox(height: 20),
@@ -87,9 +98,16 @@ class _SettingsState extends State<Settings> {
                       style: TextStyle(color: Colors.white, fontSize: 19),
                     ),
                   ),
-                  _buildSubOption('User Settings', Icons.settings),
-                  _buildSubOption('General', Icons.settings),
-                  _buildSubOption('New Account', Icons.add),
+                  _buildSubOption('User Settings', Icons.settings, () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => UserSettings()),
+                    );
+                  }),
+                  _buildSubOption('New Account', Icons.add, () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => NewAccount()),
+                    );
+                  }),
                   _buildDivider(),
                   ListTile(
                     title: Text(
@@ -97,16 +115,29 @@ class _SettingsState extends State<Settings> {
                       style: TextStyle(color: Colors.white, fontSize: 19),
                     ),
                   ),
-                  _buildSubOption('Manage Password', Icons.security),
-                  _buildSubOption('Change Password', Icons.lock),
+                  _buildSubOption('Manage Password', Icons.security, () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ManagePassword()),
+                    );
+                  }),
+                  _buildSubOption('Change Password', Icons.lock, () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ChangePassword()),
+                    );
+                  }),
                   _buildDivider(),
-                  _buildSubOption('Privacy', Icons.privacy_tip),
-                  _buildSubOption('Notifications', Icons.notifications),
-                  _buildSubOption('About', Icons.info),
+                  _buildSubOption('Privacy', Icons.privacy_tip, () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => PrivacyPage()),
+                    );
+                  }),
+                  _buildSubOption('About', Icons.info, () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => AboutPage()),
+                    );
+                  }),
                   _buildDivider(),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  SizedBox(height: 15),
                   Row(
                     children: [
                       Padding(padding: EdgeInsets.all(10.0)),
@@ -123,15 +154,11 @@ class _SettingsState extends State<Settings> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  SizedBox(height: 15),
                 ],
               ),
             ),
-            SizedBox(
-              height: 30,
-            ),
+            SizedBox(height: 30),
           ],
         ),
       ),
@@ -166,7 +193,7 @@ class _SettingsState extends State<Settings> {
     );
   }
 
-  Widget _buildSubOption(String title, IconData icon) {
+  Widget _buildSubOption(String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       title: Row(
         children: [
@@ -178,7 +205,7 @@ class _SettingsState extends State<Settings> {
           ),
         ],
       ),
-      onTap: () {},
+      onTap: onTap, // Trigger navigation here
     );
   }
 

@@ -5,6 +5,7 @@ import 'package:newsapp/homepage/hompage.dart';
 import 'package:newsapp/pages/saved.dart';
 import 'package:newsapp/pages/settings.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class HeadlinesPage extends StatefulWidget {
   @override
@@ -192,8 +193,16 @@ class _HeadlinesPageState extends State<HeadlinesPage>
             listResponse![index]['title'] ?? '',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          onTap: () {
-            // Add onTap logic
+          onTap: () async {
+            // Get the URL from the response
+            String? url = listResponse![index]['url'];
+
+            // Check if the URL is not null and can be launched
+            if (url != null && await canLaunch(url)) {
+              await launch(url); // Launch the URL in a browser
+            } else {
+              print("Could not launch the URL");
+            }
           },
           trailing: Container(
             width: 100,
