@@ -5,6 +5,8 @@ import 'package:newsapp/firstpage/login.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:flutter/foundation.dart';
 import '../main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import './auth.dart';
 
 class Second extends StatefulWidget {
   const Second({super.key});
@@ -18,9 +20,37 @@ class _SecondState extends State<Second> {
   final username = TextEditingController();
   final password = TextEditingController();
   final phone = TextEditingController();
-  final email = TextEditingController();
+  final TextEditingController controlEmail = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
+
+  final User? user = Auth().currentUser;
+
+  Future<void> signOut() async {
+    await Auth().signOut();
+  }
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+          email: controlEmail.text, password: password.text);
+    } catch (e) {
+      // setState(() {
+      //   errorMessage = e.message;
+      // });
+    }
+  }
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+          email: controlEmail.text, password: password.text);
+    } catch (e) {
+      // setState(() {
+      //   errorMessage = e.message;
+      // });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
